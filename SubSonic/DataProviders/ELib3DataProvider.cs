@@ -11,11 +11,12 @@
  * implied. See the License for the specific language governing
  * rights and limitations under the License.
 */
+
+using Microsoft.Practices.EnterpriseLibrary.Data;
 #if ALLPROVIDERS
 using System;
 using System.Data;
 using System.Data.Common;
-using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SubSonic
 {
