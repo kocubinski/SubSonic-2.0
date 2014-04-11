@@ -107,12 +107,12 @@ namespace SubSonic
     /// </summary>
     public class ReservedColumnName
     {
-        public const string CREATED_BY = "CreatedBy";
+        public const string CREATED_BY = "CreatedByUser";
         public const string CREATED_ON = "CreatedOn";
         public const string DELETED = "Deleted";
         public const string IS_ACTIVE = "IsActive";
         public const string IS_DELETED = "IsDeleted";
-        public const string MODIFIED_BY = "ModifiedBy";
+        public const string MODIFIED_BY = "ModifiedByUser";
         public const string MODIFIED_ON = "ModifiedOn";
     }
 
