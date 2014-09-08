@@ -17,5 +17,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("f9dd1ee0-78d5-4db9-98c1-0d520c2669ce")]
 [assembly: AssemblyProductAttribute("SubCommander")]
 [assembly: AssemblyCopyrightAttribute("Copyright ©2006-2008 The SubSonic Project")]
-[assembly: AssemblyVersionAttribute("2.1.1.0")]
-[assembly: AssemblyFileVersionAttribute("2.1.1.0")]
+[assembly: AssemblyVersionAttribute("2.2.2.0")]
+[assembly: AssemblyFileVersionAttribute("2.2.2.0")]

@@ -423,7 +423,8 @@ namespace <%=provider.GeneratedNamespace%>
             if(fkTables != null)
             {
                 ArrayList usedPropertyNames = new ArrayList();
-                foreach(TableSchema.ForeignKeyTable fk in fkTables)
+                TableSchema.ForeignKeyTableCollection ordered = fkTables.Order();
+                foreach(TableSchema.ForeignKeyTable fk in ordered)
                 {
                     TableSchema.Table fkTbl = DataService.GetSchema(fk.TableName, providerName, TableType.Table);
                     if(CodeService.ShouldGenerate(fkTbl))

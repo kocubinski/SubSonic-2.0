@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Text;
 using SubSonic.Sugar;
 using SubSonic.Utilities;
@@ -376,7 +377,19 @@ namespace SubSonic
         /// Summary for the ForeignKeyTableCollection class
         /// </summary>
         [Serializable]
-        public class ForeignKeyTableCollection : List<ForeignKeyTable> {}
+        public class ForeignKeyTableCollection : List<ForeignKeyTable>
+        {
+            /// <summary>
+            /// Return a new ordered-list by ColumnName.
+            /// </summary>
+            /// <returns></returns>
+            public ForeignKeyTableCollection Order()
+            {
+                var res = new ForeignKeyTableCollection();
+                res.AddRange(this.OrderBy(fk => fk.ColumnName));
+                return res;
+            } 
+        }
 
         #endregion
 
