@@ -296,6 +296,32 @@ namespace SubSonic
         }
 
         /// <summary>
+        /// Ands the expression.
+        /// </summary>
+        /// <param name="column">The table column</param>
+        /// <returns></returns>
+        public Constraint AndExpression(TableSchema.TableColumn column)
+        {
+            //as a convenience, check that the last constraint
+            //is a close paren
+            if(Constraints.Count > 0 && (ClosedParenCount < OpenParenCount))
+            {
+                Constraint last = Constraints[Constraints.Count - 1];
+                if(last.Comparison != Comparison.CloseParentheses)
+                    CloseExpression();
+            }
+            OpenParenCount++;
+            var c = new Constraint(ConstraintType.And, column.ColumnName, column.QualifiedName, "(" + column.ColumnName,
+                this)
+            {
+                TableName = column.Table.Name,
+                DbType = column.DataType,
+                Column = column
+            };
+            return c;
+        }
+
+        /// <summary>
         /// Ands the specified column name.
         /// </summary>
         /// <param name="columnName">Name of the column.</param>

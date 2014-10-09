@@ -16,6 +16,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using SubSonic.Sugar;
 using SubSonic.Utilities;
@@ -50,6 +51,18 @@ namespace SubSonic
         public void SetInsertQuery(Insert q)
         {
             insert = q;
+        }
+
+        public TableSchema.TableColumn FindColumn(string columnName, string tableName)
+        {
+            var column =
+                query.FromTables
+                    .SelectMany(t => t.Columns)
+                    .Concat(query.Joins.SelectMany(j => j.FromColumn.Table.Columns))
+                    .FirstOrDefault(tc => tc.ColumnName == columnName
+                                          && tc.Table.Name == tableName);
+
+            return column;
         }
 
         /// <summary>
@@ -254,7 +267,7 @@ namespace SubSonic
             bool foundColumn = false;
             if(c.ConstructionFragment == c.ColumnName && c.ConstructionFragment != "##")
             {
-                TableSchema.TableColumn col = FindColumn(c.ColumnName);
+                TableSchema.TableColumn col = FindColumn(c.ColumnName, c.TableName);
 
                 if (c.Column != null && col != null)
                 {
@@ -292,7 +305,7 @@ namespace SubSonic
                     isAggregate = true;
                 }
 
-                TableSchema.TableColumn col = FindColumn(c.ColumnName);
+                TableSchema.TableColumn col = FindColumn(c.ColumnName, c.TableName);
                 if(!isAggregate && col != null)
                 {
                     if (c.ConstructionFragment.Contains(col.QualifiedName))
