@@ -62,7 +62,7 @@ namespace SubSonic
                     .FirstOrDefault(tc => tc.ColumnName == columnName
                                           && tc.Table.Name == tableName);
 
-            return column;
+            return column ?? FindColumn(columnName);
         }
 
         /// <summary>
